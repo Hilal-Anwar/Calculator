@@ -80,7 +80,7 @@ public class Controller {
         history.setText("");
         box.setText(expression);
         condition1=true;
-        condition=true;
+        condition=false;
     }
 
     @FXML
@@ -162,6 +162,8 @@ public class Controller {
             arrayList.remove(arrayList.size() - 1);
             for (String s : arrayList) expression = String.format("%s%s", expression, s);
             box.setText(expression);
+            condition1=true;
+            condition=false;
         }
     }
     @FXML
