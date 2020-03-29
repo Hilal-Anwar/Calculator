@@ -56,6 +56,7 @@ public class Controller {
         arrayList.add(button.getText());
         box.setText(box.getText() + button.getText());
         expression = box.getText();
+        x=arrayList.size()-1;
     }
 
     @FXML
@@ -153,6 +154,7 @@ public class Controller {
                 expression = box.getText();
             }
         }
+        x=arrayList.size()-1;
     }
 
     @FXML
@@ -162,6 +164,7 @@ public class Controller {
             arrayList.remove(arrayList.size() - 1);
             for (String s : arrayList) expression = String.format("%s%s", expression, s);
             box.setText(expression);
+            x=arrayList.size()-1;
             condition1=true;
             condition=true;
         }

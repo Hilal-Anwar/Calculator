@@ -190,9 +190,9 @@ class CalculatorOperation {
         return i;
     }
 
-    double factorial(long n) {
-        long f = 1;
-        for (long i = 1; i <= n; i++)
+    double factorial(double n) {
+        double f = 1;
+        for (int i = 1; i <= n; i++)
             f = f * i;
         return f;
     }
