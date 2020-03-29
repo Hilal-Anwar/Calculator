@@ -21,6 +21,7 @@ public class Controller {
     RadioButton Scientific, Standard, Degree, Radian;
     @FXML
     TextField box;
+    int x=0;
     @FXML
     protected void numbers(ActionEvent actionEvent) {
         condition1 = false;
@@ -29,24 +30,23 @@ public class Controller {
         arrayList.add(button.getText());
         box.setText(box.getText() + button.getText());
         expression = box.getText();
+        x=arrayList.size()-1;
     }
 
     @FXML
     protected void Operator(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
-        if (condition) {
-            condition1 = true;
+        if (!box.getText().equals("")){
+        box.setText(expression+button.getText());
+        arrayList.set(x,button.getText());
+        condition1=true;
+        }
+        if(button.getText().equals("-")&&box.getText().equals("")){
             arrayList.add(button.getText());
             box.setText(box.getText() + button.getText());
             expression = box.getText();
-            condition = false;
         }
-        else if(button.getText().equals("-")){
-            arrayList.add(button.getText());
-            box.setText(box.getText() + button.getText());
-            expression = box.getText();
-            condition = false;
-        }
+
     }
 
     @FXML
@@ -163,7 +163,7 @@ public class Controller {
             for (String s : arrayList) expression = String.format("%s%s", expression, s);
             box.setText(expression);
             condition1=true;
-            condition=false;
+            condition=true;
         }
     }
     @FXML

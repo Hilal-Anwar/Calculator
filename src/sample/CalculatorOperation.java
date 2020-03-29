@@ -1,6 +1,7 @@
 package sample;
 
 import java.util.ArrayList;
+
 class CalculatorOperation {
     int sign, finalSign;
     Double FinalValue = 0.0;
@@ -20,10 +21,6 @@ class CalculatorOperation {
         FinalValue = 0.0;
         ConsoleValue = ConsoleValue + "+";
         for (int i = 0; i < ConsoleValue.length(); i++) {
-            if (ConsoleValue.charAt(i) == '-')
-                sign = (-1);
-            if (ConsoleValue.charAt(i) == '+')
-                sign = 1;
             if ((Character.isDigit(ConsoleValue.charAt(i)) || ConsoleValue.charAt(i) == '.') || ConsoleValue.charAt(i) == 'E') {
                 tem = String.format("%s%s", tem, ConsoleValue.charAt(i));
                 if (tem.length() == 1)
@@ -63,6 +60,11 @@ class CalculatorOperation {
             if (ConsoleValue.charAt(i) == 'r') {
                 i = function(i, 'r', ConsoleValue);
             }
+            if (ConsoleValue.charAt(i) == '-'){
+                sign = (-1);
+            }
+            if (ConsoleValue.charAt(i) == '+')
+                sign = 1;
             if (ConsoleValue.charAt(i) == '-' || ConsoleValue.charAt(i) == '+') {
                 if (!tem.equals("")) {
                     Memory.add(Double.parseDouble(tem) * finalSign);
@@ -138,6 +140,7 @@ class CalculatorOperation {
     int function(int i, char type, String Data) {
         i = i + 1;
         tem = "";
+        finalSign=sign;
         while (true) {
             if (Character.isDigit(Data.charAt(i)) || Data.charAt(i) == '.' || Data.charAt(i) == 'E' || tem.equals(""))
             {
