@@ -169,14 +169,17 @@ class CalculatorOperation {
                     if (type == 'T'){
                         if(!tem.equals("90.0"))
                         tem = String.valueOf(Math.tan(Math.toRadians(Double.parseDouble(tem))));
-                        else tem="+";
+                        else tem="Infinity";
                     }
                     if (type == 's')
                         tem = String.valueOf(Math.toDegrees(Math.asin(Double.parseDouble(tem))));
                     if (type == 'c')
                         tem = String.valueOf(Math.toDegrees(Math.acos(Double.parseDouble(tem))));
-                    if (type == 't')
+                    if (type == 't'){
+                        if(!tem.equals("90.0"))
                         tem = String.valueOf(Math.toDegrees(Math.atan(Double.parseDouble(tem))));
+                        else tem="Infinity";
+                    }
                 }
                 if (type == 'l')
                     tem = String.valueOf(Math.log(Double.parseDouble(tem)));
