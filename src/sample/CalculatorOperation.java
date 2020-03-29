@@ -27,7 +27,7 @@ class CalculatorOperation {
                     finalSign = sign;
             }
             if (ConsoleValue.charAt(i) == '!') {
-                tem = String.valueOf(factorial(Double.parseDouble(tem)));
+                tem = String.valueOf(factorial(Long.parseLong(tem)));
             }
             if (ConsoleValue.charAt(i)=='e')
                 tem=String.valueOf(Math.E);
@@ -190,9 +190,9 @@ class CalculatorOperation {
         return i;
     }
 
-    double factorial(double n) {
-        double f = 1;
-        for (double i = 1; i <= n; i++)
+    double factorial(long n) {
+        long f = 1;
+        for (long i = 1; i <= n; i++)
             f = f * i;
         return f;
     }
