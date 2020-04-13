@@ -51,8 +51,8 @@ scientific degree mode](https://github.com/Hilal-Anwar/Calculator/blob/master/6.
 
 
 # Java version:
-It works with java 8 or higher version of java 11 or 14
+It works fine  with java 8 or higher version of java 11 or 14
 
-For java 11 of higher you need javafx library https://gluonhq.com/products/javafx/
+For java 11 or higher you need javafx library https://gluonhq.com/products/javafx/
 
-You can download calculator from https://github.com/Hilal-Anwar/Calculator/releases/download/v1.01/Calculator-1.0.exe
+You can download the calculator from https://github.com/Hilal-Anwar/Calculator/releases/download/v1.01/Calculator-1.0.exe
