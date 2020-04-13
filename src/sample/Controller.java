@@ -1,4 +1,4 @@
-package sample;
+package Code;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,9 +9,10 @@ import javafx.scene.control.TextField;
 
 import java.util.ArrayList;
 
-public class Controller {
+public class Controller
+{
     ArrayList<String> arrayList = new ArrayList<>();
-    boolean condition = false, condition1 = true;
+    boolean condition = false;
     String expression;char type='D';
     @FXML
     Label answer, history;
@@ -24,39 +25,42 @@ public class Controller {
     int x=0;
     @FXML
     protected void numbers(ActionEvent actionEvent) {
-        condition1 = false;
         condition = true;
         Button button = (Button) actionEvent.getSource();
         arrayList.add(button.getText());
         box.setText(box.getText() + button.getText());
         expression = box.getText();
-        x=arrayList.size()-1;
     }
-
     @FXML
     protected void Operator(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
-        if (!box.getText().equals("")){
+        if (!box.getText().equals(""))
+        {
         box.setText(expression+button.getText());
-        arrayList.set(x,button.getText());
-        condition1=true;
+        if (condition){
+        arrayList.add(button.getText());
+        x=arrayList.size()-1;
+        condition=false;
+        }
+        else {
+            arrayList.set(x,button.getText());
+        }
         }
         if(button.getText().equals("-")&&box.getText().equals("")){
             arrayList.add(button.getText());
             box.setText(box.getText() + button.getText());
             expression = box.getText();
         }
-
+        System.out.println(arrayList);
     }
 
     @FXML
     protected void brackets(ActionEvent actionEvent) {
-        condition1 = true;
+        condition=true;
         Button button = (Button) actionEvent.getSource();
         arrayList.add(button.getText());
         box.setText(box.getText() + button.getText());
         expression = box.getText();
-        x=arrayList.size()-1;
     }
 
     @FXML
@@ -80,24 +84,17 @@ public class Controller {
         arrayList.clear();
         history.setText("");
         box.setText(expression);
-        condition1=true;
         condition=false;
     }
 
     @FXML
     protected void MathFunction(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
-        if (button.getText().equals("^")) {
-            arrayList.add("^(");
-            box.setText(box.getText() +"^(");
-            expression = box.getText();
-        }
         if (button.getText().equals("n!")) {
             arrayList.add("!");
             box.setText(box.getText() + "!");
             expression = box.getText();
         }
-        if (condition1) {
             if (button.getText().equals("sin")) {
                 arrayList.add("sin(");
                 box.setText(box.getText() + "sin(");
@@ -153,8 +150,7 @@ public class Controller {
                 box.setText(box.getText() +"√(");
                 expression = box.getText();
             }
-        }
-        x=arrayList.size()-1;
+        condition=true;
     }
 
     @FXML
@@ -164,8 +160,6 @@ public class Controller {
             arrayList.remove(arrayList.size() - 1);
             for (String s : arrayList) expression = String.format("%s%s", expression, s);
             box.setText(expression);
-            x=arrayList.size()-1;
-            condition1=true;
             condition=true;
         }
     }
@@ -192,9 +186,7 @@ public class Controller {
     @FXML
     protected void Enable(ActionEvent actionEvent) {
         if (((RadioButton) actionEvent.getSource()).getText().equals("Scientific")) {
-            Scientific.setDisable(true);
             Standard.setSelected(false);
-            Standard.setDisable(false);
             sin.setDisable(false);
             cos.setDisable(false);
             tan.setDisable(false);
@@ -207,8 +199,6 @@ public class Controller {
         }
         if (((RadioButton) actionEvent.getSource()).getText().equals("Standard")) {
             Scientific.setSelected(false);
-            Standard.setDisable(true);
-            Scientific.setDisable(false);
             sin.setDisable(true);
             cos.setDisable(true);
             tan.setDisable(true);
@@ -225,15 +215,11 @@ public class Controller {
     protected void measureSystem(ActionEvent actionEvent) {
         if (((RadioButton) actionEvent.getSource()).getText().equals("Degree")) {
             Radian.setSelected(false);
-            Radian.setDisable(false);
-            Degree.setDisable(true);
             type='D';
         }
         if (((RadioButton) actionEvent.getSource()).getText().equals("Radian")) {
             type='R';
             Degree.setSelected(false);
-            Degree.setDisable(false);
-            Radian.setDisable(true);
         }
     }
 }
