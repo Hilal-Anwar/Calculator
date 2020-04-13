@@ -1,9 +1,9 @@
-package sample;
+package Code;
 
 public class Calculator extends CalculatorOperation {
 
     String mem;
-    public Calculator(String ConsoleValue,char measureSystem)
+    public Calculator(String ConsoleValue, char measureSystem)
     {
         system=measureSystem;
         int start = 0, end = 0;
@@ -18,6 +18,8 @@ public class Calculator extends CalculatorOperation {
         ConsoleValue=ConsoleValue.replace("tan","T");
         ConsoleValue=ConsoleValue.replace("log","L");
         ConsoleValue=ConsoleValue.replace("ln","l");
+        ConsoleValue=Reorganized(ConsoleValue);
+        System.out.println(ConsoleValue);
         while (ConsoleValue.contains("(") || ConsoleValue.contains(")"))
         {
             for (int i = 0; i < ConsoleValue.length(); i++)
@@ -69,5 +71,29 @@ public class Calculator extends CalculatorOperation {
             co=co.substring(0,(co.length()-(c2-c1)));
         }
         return co;
+    }
+    String Reorganized(String str){
+        StringBuilder tem= new StringBuilder();
+        for (int i=0;i<str.length();i++)
+        {
+            if ((i!=0)&&(str.charAt(i)=='S'||str.charAt(i)=='s'||
+                    str.charAt(i)=='C'||str.charAt(i)=='c'||
+                    str.charAt(i)=='T'||str.charAt(i)=='t'||
+                    str.charAt(i)=='L'|| str.charAt(i)=='l'
+                    ||str.charAt(i)=='e'||str.charAt(i)=='π'||str.charAt(i)=='r')
+                    &&(Character.isDigit(str.charAt(i-1))||str.charAt(i-1)==')'))
+            {
+                    tem.append("*").append(str.charAt(i));
+            }
+            else if((i!=0&&Character.isDigit(str.charAt(i))&&str.charAt(i-1)==')')||
+                    (i!=0&&Character.isDigit(str.charAt(i))&&
+                            ((str.charAt(i-1)=='π')||(str.charAt(i-1)=='e')||(str.charAt(i-1)=='!')))){
+                tem.append("*").append(str.charAt(i));
+            }
+            else if ((i!=0&&str.charAt(i)=='e'&&str.charAt(i-1)=='π')||((i!=0&&str.charAt(i)=='π'&&str.charAt(i-1)=='e')))
+                tem.append("*").append(str.charAt(i));
+            else tem.append(str.charAt(i));
+        }
+        return tem.toString();
     }
 }
