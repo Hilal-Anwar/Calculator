@@ -48,3 +48,11 @@ Example :4
 
 ![Image of
 scientific degree mode](https://github.com/Hilal-Anwar/Calculator/blob/master/6.png)
+
+
+# Java version:
+It works with java 8 or higher version of java 11 or 14
+
+For java 11 of higher you need javafx library https://gluonhq.com/products/javafx/
+
+You can download calculator from https://github.com/Hilal-Anwar/Calculator/releases/download/v1.01/Calculator-1.0.exe
