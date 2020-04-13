@@ -1,10 +1,10 @@
 # Calculator
 
 
-This a simple calculator that can do addition,subtraction,multiplication and division.
+This a simple calculator that can do addition , subtraction ,multiplication and division.
 
 
-It has two modes in it standard,scientific.
+It has two modes in it standard, scientific.
 
 
 
@@ -23,7 +23,7 @@ Example:
 # This is the scientific mode of calculator
 
 
-This can solve for tigonomatric function,log functions,inverse function.
+This can solve for trigonometric function, log functions, inverse function.
 It can also convert radian to degree.
 
 Example :1
