@@ -1,4 +1,4 @@
-package sample;
+package Code;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,12 @@ class CalculatorOperation {
         multiplicationOperator.clear();
         powerOperator.clear();
         tem = "";
-        sign = 1;finalSign = 1;
+        sign = 1;
+        finalSign = 1;
         FinalValue = 0.0;
         ConsoleValue = ConsoleValue + "+";
-        for (int i = 0; i < ConsoleValue.length(); i++) {
+        for (int i = 0; i < ConsoleValue.length(); i++)
+        {
             if ((Character.isDigit(ConsoleValue.charAt(i)) || ConsoleValue.charAt(i) == '.') || ConsoleValue.charAt(i) == 'E') {
                 tem = String.format("%s%s", tem, ConsoleValue.charAt(i));
                 if (tem.length() == 1)
@@ -29,10 +31,10 @@ class CalculatorOperation {
             if (ConsoleValue.charAt(i) == '!') {
                 tem = String.valueOf(factorial(Long.parseLong(tem)));
             }
-            if (ConsoleValue.charAt(i)=='e')
-                tem=String.valueOf(Math.E);
-            if (ConsoleValue.charAt(i)=='π')
-                tem=String.valueOf(Math.PI);
+            if (ConsoleValue.charAt(i) == 'e')
+                tem = String.valueOf(Math.E);
+            if (ConsoleValue.charAt(i) == 'π')
+                tem = String.valueOf(Math.PI);
             if (ConsoleValue.charAt(i) == 'S') {
                 i = function(i, 'S', ConsoleValue);
             }
@@ -60,7 +62,7 @@ class CalculatorOperation {
             if (ConsoleValue.charAt(i) == 'r') {
                 i = function(i, 'r', ConsoleValue);
             }
-            if (ConsoleValue.charAt(i) == '-'){
+            if (ConsoleValue.charAt(i) == '-') {
                 sign = (-1);
             }
             if (ConsoleValue.charAt(i) == '+')
@@ -107,7 +109,7 @@ class CalculatorOperation {
             multiplicationOperator = sizeReducer(multiplicationOperator, powerOperator, j);
         }
     }
-
+     //for division
     void division() {
         for (int i = 0; i < divisionOperator.size(); i++) {
             Memory.set(divisionOperator.get(i), Memory.get(divisionOperator.get(i)) / Memory.get(divisionOperator.get(i) + 1));
@@ -116,7 +118,7 @@ class CalculatorOperation {
             multiplicationOperator = sizeReducer(multiplicationOperator, divisionOperator, i);
         }
     }
-
+      //for multiplication
     void multiplication() {
         for (int j = 0; j < multiplicationOperator.size(); j++) {
             Memory.set(multiplicationOperator.get(j), Memory.get(multiplicationOperator.get(j)) * Memory.get(multiplicationOperator.get(j) + 1));
@@ -124,7 +126,7 @@ class CalculatorOperation {
             multiplicationOperator = sizeReducer(multiplicationOperator, multiplicationOperator, j);
         }
     }
-
+        //for addition and Subtraction
     void AdditionAndSubtraction() {
         for (Double aDouble : Memory) FinalValue = FinalValue + aDouble;
     }
@@ -136,19 +138,22 @@ class CalculatorOperation {
         }
         return memoryList1;
     }
-
+        //For maths function
     int function(int i, char type, String Data) {
         i = i + 1;
         tem = "";
-        finalSign=sign;
+        finalSign = sign;
         while (true) {
-            if (Character.isDigit(Data.charAt(i)) || Data.charAt(i) == '.' || Data.charAt(i) == 'E' || tem.equals(""))
-            {
-                tem = tem + Data.charAt(i);
-                i = i + 1;
-            }
-            else {
-                if (system == 'R') {
+            if (Character.isDigit(Data.charAt(i)) || Data.charAt(i) == '.' || Data.charAt(i) == 'E' || tem.equals("")) {
+                if (Data.charAt(i) == 'E' && Data.charAt(i + 1) == '-') {
+                    tem = tem + "E" + "-";
+                    i = i + 2;
+                } else {
+                    tem = tem + Data.charAt(i);
+                    i = i + 1;
+                }
+            } else {
+                if (system == 'R') { //Trigonometrical and Inverse Trigonometrical functions
                     if (type == 'S')
                         tem = String.valueOf(Math.sin(Double.parseDouble(tem)));
                     if (type == 'C')
@@ -161,30 +166,33 @@ class CalculatorOperation {
                         tem = String.valueOf(Math.acos(Double.parseDouble(tem)));
                     if (type == 't')
                         tem = String.valueOf(Math.atan(Double.parseDouble(tem)));
-                } if (system=='D'){
+                }
+                if (system == 'D') {
                     if (type == 'S')
                         tem = String.valueOf(Math.sin(Math.toRadians(Double.parseDouble(tem))));
                     if (type == 'C')
                         tem = String.valueOf(Math.cos(Math.toRadians(Double.parseDouble(tem))));
-                    if (type == 'T'){
-                        if(!tem.equals("90.0"))
-                        tem = String.valueOf(Math.tan(Math.toRadians(Double.parseDouble(tem))));
-                        else tem="Infinity";
+                    if (type == 'T') {
+                        if (!tem.equals("90.0"))
+                            tem = String.valueOf(Math.tan(Math.toRadians(Double.parseDouble(tem))));
+                        else tem = "Infinity";
                     }
                     if (type == 's')
                         tem = String.valueOf(Math.toDegrees(Math.asin(Double.parseDouble(tem))));
                     if (type == 'c')
                         tem = String.valueOf(Math.toDegrees(Math.acos(Double.parseDouble(tem))));
-                    if (type == 't'){
-                        if(!tem.equals("90.0"))
-                        tem = String.valueOf(Math.toDegrees(Math.atan(Double.parseDouble(tem))));
-                        else tem="Infinity";
+                    if (type == 't') {
+                        if (!tem.equals("90.0"))
+                            tem = String.valueOf(Math.toDegrees(Math.atan(Double.parseDouble(tem))));
+                        else tem = "Infinity";
                     }
                 }
+                //log and inverse log
                 if (type == 'l')
                     tem = String.valueOf(Math.log(Double.parseDouble(tem)));
                 if (type == 'L')
                     tem = String.valueOf(Math.log10(Double.parseDouble(tem)));
+                //for root function
                 if (type == 'r')
                     tem = String.valueOf(Math.sqrt(Double.parseDouble(tem)));
                 break;
@@ -192,7 +200,7 @@ class CalculatorOperation {
         }
         return i;
     }
-
+    // for  finding factorial
     double factorial(double n) {
         double f = 1;
         for (int i = 1; i <= n; i++)
